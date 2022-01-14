@@ -22,6 +22,13 @@ gem install bundler
 bundle install
 ```
 
+After the installations, you need to make some adjustments to your .env file. Copy the contents of _.env.example_ to a file named _.env_:
+
+```
+cp .env.example .env
+```
+Then in your newly created _.env_ file, you need to configure the DEFAULT_PASSWORD, ADMINS, TEST_USER_EMAIL, and TEST_USER_PASSWORD variables.
+
 Next, set up the database:
 
 ```
