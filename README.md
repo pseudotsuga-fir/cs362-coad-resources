@@ -111,4 +111,4 @@ Recaptcha
 ![erd](public/documentation/erd.jpg?raw=true)
 
 
-&copy; 2020 James Martinez, Ryder McDowell, Andrew Hepworth. All rights reserved.
+&copy; 2020 James Martinez, Ryder McDowell, Andrew Hepworth, and Baleria Reyes. All rights reserved.
