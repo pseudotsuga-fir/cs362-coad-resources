@@ -79,47 +79,65 @@ RSpec.describe Organization, type: :model do
   end
 
   describe "validators" do
-    it "validates presence of email" do
+    it "validate presence of email" do
       should validate_presence_of(:email)
     end
 
-    it "validates presence of name" do
+    it "validate presence of name" do
       should validate_presence_of(:name)
     end
 
-    it "validates presence of phone" do
+    it "validate presence of phone" do
       should validate_presence_of(:phone)
     end
 
-    it "validates presence of status" do
+    it "validate presence of status" do
       should validate_presence_of(:status)
     end
 
-    it "validates presence of primary_name" do
+    it "validate presence of primary_name" do
       should validate_presence_of(:primary_name)
     end
 
-    it "validates presence of secondary_name" do
+    it "validate presence of secondary_name" do
       should validate_presence_of(:secondary_name)
     end
 
-    it "validates presence of secondary_phone" do
+    it "validate presence of secondary_phone" do
       should validate_presence_of(:secondary_phone)
     end
     
-    it "validates length of email" do
+    it "validate length of email" do
       should validate_length_of(:email).
       is_at_least(1).is_at_most(255)
     end
 
-    it "validates length of name" do
+    it "validate length of name" do
       should validate_length_of(:name).
       is_at_least(1).is_at_most(255)
     end
 
-    it "validates length of description" do
+    it "validate length of description" do
       should validate_length_of(:description).
       is_at_most(1020)
+    end
+
+    it "validate uniqueness of email" do
+      should validate_uniqueness_of(:email).case_insensitive
+    end
+
+    it "validate uniqueness of name" do
+      should validate_uniqueness_of(:name).case_insensitive
+    end
+
+    it "rejects emails without @" do
+      organization.email = "test.com"
+      expect(organization).to be_invalid
+    end
+
+    it "rejects emails without domain" do
+      organization.email = "test@test"
+      expect(organization).to be_invalid
     end
 
   end
