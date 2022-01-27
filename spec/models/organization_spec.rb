@@ -4,7 +4,7 @@ RSpec.describe Organization, type: :model do
 
  let(:organization) { Organization.new(
   name: "FakeName",
-  status: 1,
+  status: "submitted",
   phone: "0000000000",
   email: "fake@fake.com",
   description: "This is a fake organization",
@@ -16,7 +16,7 @@ RSpec.describe Organization, type: :model do
   secondary_name: "FakeSecondName",
   secondary_phone: "2222222222",
   title: "FakeTitle",
-  transportation: 1
+  transportation: "no"
  ) }
 
   describe "attributes" do
@@ -42,14 +42,6 @@ RSpec.describe Organization, type: :model do
 
     it "has a rejection_reason" do
       expect(organization).to respond_to(:rejection_reason)
-    end
-
-    it "has a created_at" do
-      expect(organization).to respond_to(:created_at)
-    end
-
-    it "has a updated_at" do
-      expect(organization).to respond_to(:updated_at)
     end
 
     it "has a liability_insurance" do
