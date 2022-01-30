@@ -49,5 +49,50 @@ RSpec.describe Ticket, type: :model do
         it "Belongs to Organization" do
             should belong_to :organization
         end
-    end   
+    end  
+
+    describe "Validators" do
+        it "Validates presence of name" do
+          should validate_presence_of(:name)
+        end  
+
+        it "Validates presence of phone" do
+            should validate_presence_of(:phone)
+        end
+
+        it "Validates presence of region ID" do
+            should validate_presence_of(:region_id)
+        end
+
+        it "Validates presence of resource category ID" do
+            should validate_presence_of(:resource_category_id)
+        end
+
+        it "Validates length of name" do
+            should validate_length_of(:name).is_at_least(1).is_at_most(255)
+        end
+
+        it "Validates length of description" do
+            should validate_length_of(:description).is_at_most(1020)
+        end
+    end 
+
+    describe "Methods" do
+        it "Checks if ticket is open." do
+            !ticket.open?
+            ticket.open?
+            expect(ticket.open?).to eq(true)
+        end
+
+        # it "Checks if Organization is not empty" do
+        #     # !ticket.captured?
+        #     ticket.captured?
+        #     expect(ticket.captured?).to eq(true)
+        # end
+
+        it "Returns ticket ID" do
+            id = ticket.id
+            expect(ticket.to_s).to eq("Ticket #{id}")
+        end
+    end
 end
