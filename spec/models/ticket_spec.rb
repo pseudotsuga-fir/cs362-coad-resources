@@ -75,7 +75,7 @@ RSpec.describe Ticket, type: :model do
         it "Validates length of description" do
             should validate_length_of(:description).is_at_most(1020)
         end
-    end 
+    end
 
     describe "Methods" do
         it "Checks if ticket is open." do
@@ -83,12 +83,6 @@ RSpec.describe Ticket, type: :model do
             ticket.open?
             expect(ticket.open?).to eq(true)
         end
-
-        # it "Checks if Organization is not empty" do
-        #     # !ticket.captured?
-        #     ticket.captured?
-        #     expect(ticket.captured?).to eq(true)
-        # end
 
         it "Returns ticket ID" do
             id = ticket.id
