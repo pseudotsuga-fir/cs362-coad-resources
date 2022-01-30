@@ -25,6 +25,12 @@ RSpec.describe Region, type: :model do
     end
   end
 
+  describe "association" do
+    it "Has many tickets" do
+      should have_many :tickets
+    end
+  end
+
   describe "validators" do
     it "validates the presence of name" do
       should validate_presence_of(:name)
