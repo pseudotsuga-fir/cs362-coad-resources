@@ -4,7 +4,7 @@ RSpec.describe Ticket, type: :model do
 
     let(:ticket) {Ticket.new(
         name: "SpongeBob",
-        phone: "5555555555",
+        phone: "55555555555",
         region_id: 555,
         resource_category_id: 555,
         description: "This is a ticket.",
