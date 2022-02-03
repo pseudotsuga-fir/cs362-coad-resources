@@ -1,12 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) {
-    User.new(
-      email: "test@test.org",
-      password: "I am a password"
-    )
-  }
+  let(:user) { build(:user) }
 
   describe "attributes" do
     it "has an email" do
