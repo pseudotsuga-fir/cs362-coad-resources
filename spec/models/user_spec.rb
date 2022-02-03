@@ -13,6 +13,12 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "associations" do
+    it "should belong to an organization" do
+      should belong_to :organization
+    end
+  end
+
   describe "validators" do
     it "validates presence of email" do
       should validate_presence_of(:email)
