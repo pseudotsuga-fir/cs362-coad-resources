@@ -88,5 +88,11 @@ RSpec.describe Ticket, type: :model do
             id = ticket.id
             expect(ticket.to_s).to eq("Ticket #{id}")
         end
+
+        it "is captured when it has an organization" do
+            organization = Organization.new(name: "Fake Organization")
+            ticket = Ticket.new(organization: organization)
+            expect(ticket.captured?).to be_truthy
+        end
     end
 end

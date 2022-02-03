@@ -11,3 +11,4 @@ FactoryBot.define do
         resource_category_id {555}
         region_id {555}
     end
+end
