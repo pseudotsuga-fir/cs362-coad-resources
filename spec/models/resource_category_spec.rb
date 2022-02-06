@@ -27,4 +27,14 @@ RSpec.describe ResourceCategory, type: :model do
       should validate_uniqueness_of(:name).case_insensitive
     end
   end
+
+  describe "associations" do
+    it "has and belongs to many organizations" do
+      should have_and_belong_to_many :organizations
+    end
+
+    it "has many tickets" do
+      should have_many :tickets
+    end
+  end
 end
