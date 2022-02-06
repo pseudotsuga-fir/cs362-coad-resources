@@ -37,4 +37,49 @@ RSpec.describe ResourceCategory, type: :model do
       should have_many :tickets
     end
   end
+
+  describe "methods" do
+    describe "unspecified" do
+      it "finds or creates an unspecified record if none exist" do
+        unspecified_resource_category = ResourceCategory.unspecified
+        expect(unspecified_resource_category.name).to eq('Unspecified')
+      end
+    end
+
+    describe "activate" do
+      it "changes the status of an inactive resrouce category to true" do
+        resource_category.active = false
+        resource_category.activate
+        expect(resource_category.active).to be_truthy
+      end
+    end
+
+    describe "deactivate" do
+      it "changes the status of an active resrouce category to false" do
+        resource_category.active = true
+        resource_category.deactivate
+        expect(resource_category.active).to be_falsey
+      end
+    end
+
+    describe "inactive?" do
+      it "returns false when it is active" do
+        resource_category.active = true
+        expect(resource_category.inactive?).to be_falsey
+      end
+
+      it "returns true when it is inactive" do
+        resource_category.active = false
+        expect(resource_category.inactive?).to be_truthy
+      end
+    end
+
+    describe "to_s" do
+      it "returns the name of the resource category" do
+        name = "FakeName2"
+        resource_category.name = name
+        expect(resource_category.to_s).to eq(name)
+      end
+    end
+  end
 end
