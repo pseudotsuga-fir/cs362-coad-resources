@@ -38,3 +38,6 @@
 
 .ruby-gemset
 .ruby-version
+
+# Ignore DS file for macs.
+.DS_Store
