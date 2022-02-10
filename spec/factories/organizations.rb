@@ -1,13 +1,11 @@
 FactoryBot.define do
   factory :organization do
-    name { "FakeName" }
+    sequence(:name) { |n| "FakeName#{n}" }
     status { "submitted" }
     phone { "0000000000" }
-    email { "fake@fake.com" }
+    sequence(:email) { |n| "fake#{n}@fake.com" }
     description { "This is a fake organization" }
     rejection_reason { "Fake Rejection" }
-    created_at { DateTime.new(2001,2,3,4,5,6) }
-    updated_at { DateTime.new(2001,2,3,4,5,6) }
     liability_insurance { false }
     primary_name { "1111111111" }
     secondary_name { "FakeSecondName" }
