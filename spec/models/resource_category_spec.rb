@@ -38,6 +38,44 @@ RSpec.describe ResourceCategory, type: :model do
     end
   end
 
+  describe "scope" do
+    describe "active" do
+      it "contains active resource categories" do
+        active_resource_category = create(:resource_category)
+        inactive_resource_category = create(:inactive_resource_category)
+        results = ResourceCategory.active
+
+        expect(results).to include(active_resource_category)
+      end
+
+      it "does not contain inactive resource categories" do
+        active_resource_category = create(:resource_category)
+        inactive_resource_category = create(:inactive_resource_category)
+        results = ResourceCategory.active
+
+        expect(results).to_not include(inactive_resource_category)
+      end
+    end
+
+    describe "inactive" do
+      it "contains inactive resource categories" do
+        active_resource_category = create(:resource_category)
+        inactive_resource_category = create(:inactive_resource_category)
+        results = ResourceCategory.inactive
+
+        expect(results).to include(inactive_resource_category)
+      end
+
+      it "does not contain active resource categories" do
+        active_resource_category = create(:resource_category)
+        inactive_resource_category = create(:inactive_resource_category)
+        results = ResourceCategory.inactive
+
+        expect(results).to_not include(active_resource_category)
+      end
+    end
+  end
+
   describe "methods" do
     describe "unspecified" do
       it "finds or creates an unspecified record if none exist" do
