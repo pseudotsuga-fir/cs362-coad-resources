@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :region do
-    name { "FakeName" }
+    sequence(:name) { |n| "FakeName#{n}" }
   end
 end
