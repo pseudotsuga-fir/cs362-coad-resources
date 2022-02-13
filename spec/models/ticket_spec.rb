@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
 
-    let(:ticket) {build(:ticket)}
+    let(:ticket) {create(:ticket)}
 
     describe "attributes" do
         it "has a name" do
@@ -84,4 +84,46 @@ RSpec.describe Ticket, type: :model do
             expect(ticket.captured?).to be_truthy
         end
     end
+
+    describe "scopes" do
+        let (:open_ticket) {
+             create(:ticket) 
+        }
+        let (:closed_ticket) {
+             create(:ticket, closed: true) 
+        }
+        let (:all_open_organizations) {
+            create(:ticket, organization_id: 1)
+        }
+        let (:closed_organization_ticket) {
+            create(:ticket, organization_id: 1, closed: true)
+        }
+
+        it "returns open ticket" do
+            expect(Ticket.open).to_not include(closed_ticket)   
+            expect(Ticket.open).to include(open_ticket)
+        end
+        it "returns closed ticket" do
+            expect(Ticket.closed).to_not include(open_ticket)
+            expect(Ticket.closed).to include(closed_ticket)
+        end
+        it "returns open organizations that have an ID" do
+            expect(Ticket.all_organization).to include(all_open_organizations)
+        end
+        it "returns open organizations" do 
+            expect(Ticket.organization(all_open_organizations)).to include(all_open_organizations)
+        end
+        it "returns closed organization" do
+            expect(Ticket.closed_organization(closed_organization_ticket)).to include(closed_organization_ticket)
+        end
+        it "returns ticket with requested region id" do
+            expect(Ticket.region(ticket.region_id)).to include(ticket)
+            
+        end
+        it "returns resource category with given id" do
+            expect(Ticket.resource_category(ticket.resource_category_id)).to include(ticket)
+        end
+    end
 end
+
+
