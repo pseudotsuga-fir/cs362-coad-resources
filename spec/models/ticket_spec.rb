@@ -64,6 +64,11 @@ RSpec.describe Ticket, type: :model do
         it "validates length of description" do
             should validate_length_of(:description).is_at_most(1020)
         end
+        it "validates phone format" do
+            invalid_phone = build_stubbed(:ticket, phone: "555555") 
+            expect(invalid_phone).to be_invalid
+            expect(ticket).to be_valid
+        end
     end
 
     describe "methods" do
