@@ -23,55 +23,49 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
 
-    # describe "#show" do
-    #   it "redirects to the sign in page" do
-    #     get :show
-    #     expect(response).to redirect_to(:new_user_session)
-    #   end
-    # end
+    describe "#show" do
+      it "redirects to the sign in page" do
+        get :show, params: { id: 1 }
+        expect(response).to redirect_to(:new_user_session)
+      end
+    end
 
-    # describe "#create" do
-    #   it "redirects to the sign in page" do
-    #     get :create
-    #     expect(response).to redirect_to(:new_user_session)
-    #   end
-    # end
+    describe "#create" do
+      it "redirects to the sign in page" do
+        post :create
+        expect(response).to redirect_to(:new_user_session)
+      end
+    end
 
-    # describe "#new" do
-    #   it "organization application redirects to the sign in page" do
-    #     get :new_organization_application
-    #     expect(response).to redirect_to(:new_user_session)
-    #   end
+    describe "#new" do
+      it "redirects to the sign in page" do
+        get :new
+        expect(response).to redirect_to(:new_user_session)
+      end
 
-    #   it "organization redirects to the sign in page" do
-    #     get :new_organization
-    #   end
-    # end
+    end
 
-    # describe "#edit" do
-    #   it "redirects to the sign in page" do
-    #     get :edit
-    #     expect(response).to redirect_to(:new_user_session)
-    #   end
-    # end
+    describe "#edit" do
+      it "redirects to the sign in page" do
+        get :edit, params: { id: 1 }
+        expect(response).to redirect_to(:new_user_session)
+      end
+    end
 
-    # describe "#update" do
-    #   it "redirects to the sign in page" do
-    #     get :update
-    #     expect(response).to redirect_to(:new_user_session)
-    #   end
-    # end
+    describe "#update" do
+      it "patch redirects to the sign in page" do
+        patch :update, params: { id: 1 }
+        expect(response).to redirect_to(:new_user_session)
+      end
 
-    # describe "#update" do
-    #   it "redirects to the sign in page" do
-    #     get :update
-    #     expect(response).to redirect_to(:new_user_session)
-    #   end
-    # end
+      it "put redirects to the sign in page" do
+        put :update, params: { id: 1 }
+      end
+    end
 
     # describe "#destroy" do
     #   it "redirects to the sign in page" do
-    #     get :destroy
+    #     delete "/organizations/#{id}", params: { id: 1 }
     #     expect(response).to redirect_to(:new_user_session)
     #   end
     # end
