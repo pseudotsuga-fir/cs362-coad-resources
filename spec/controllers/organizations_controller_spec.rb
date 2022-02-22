@@ -62,13 +62,6 @@ RSpec.describe OrganizationsController, type: :controller do
         put :update, params: { id: 1 }
       end
     end
-
-    # describe "#destroy" do
-    #   it "redirects to the sign in page" do
-    #     delete "/organizations/#{id}", params: { id: 1 }
-    #     expect(response).to redirect_to(:new_user_session)
-    #   end
-    # end
   end
 
 end

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
     resources :tickets, only: :destroy
 
-    resources :organizations do
+    resources :organizations, :except => [:destroy] do
       member do
         post :approve
         post :reject
