@@ -16,51 +16,47 @@ RSpec.describe OrganizationsController, type: :controller do
 # new_organization_application GET    /new_organization_application(.:format)                                           organizations#new
 
   describe "individuals" do
-    describe "#index" do
-      it "redirects to the sign in page" do
-        get :index
-        expect(response).to redirect_to(:new_user_session)
-      end
+    it "redirects to the sign in page" do
+      get :index
+      expect(response).to redirect_to(:new_user_session)
+
+      get :show, params: { id: 1 }
+      expect(response).to redirect_to(:new_user_session)
+
+      post :create
+      expect(response).to redirect_to(:new_user_session)
+
+      get :new
+      expect(response).to redirect_to(:new_user_session)
+
+      get :edit, params: { id: 1 }
+      expect(response).to redirect_to(:new_user_session)
+
+      patch :update, params: { id: 1 }
+      expect(response).to redirect_to(:new_user_session)
+
+      put :update, params: { id: 1 }
+      expect(response).to redirect_to(:new_user_session)
     end
+  end
 
-    describe "#show" do
-      it "redirects to the sign in page" do
-        get :show, params: { id: 1 }
-        expect(response).to redirect_to(:new_user_session)
-      end
-    end
+  describe "organizations" do
+    it "redirects to the dashboard page" do
+      org_user = create(:user)
+      org_user.confirm
+      sign_in(org_user)
 
-    describe "#create" do
-      it "redirects to the sign in page" do
-        post :create
-        expect(response).to redirect_to(:new_user_session)
-      end
-    end
+      get :show, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
 
-    describe "#new" do
-      it "redirects to the sign in page" do
-        get :new
-        expect(response).to redirect_to(:new_user_session)
-      end
+      get :edit, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
 
-    end
+      patch :update, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
 
-    describe "#edit" do
-      it "redirects to the sign in page" do
-        get :edit, params: { id: 1 }
-        expect(response).to redirect_to(:new_user_session)
-      end
-    end
-
-    describe "#update" do
-      it "patch redirects to the sign in page" do
-        patch :update, params: { id: 1 }
-        expect(response).to redirect_to(:new_user_session)
-      end
-
-      it "put redirects to the sign in page" do
-        put :update, params: { id: 1 }
-      end
+      put :update, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
     end
   end
 
