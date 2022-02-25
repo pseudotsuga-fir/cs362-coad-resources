@@ -17,6 +17,12 @@ RSpec.describe OrganizationsController, type: :controller do
 
   describe "individuals" do
     it "redirects to the sign in page" do
+      post :approve, params: { id: 1 }
+      expect(response).to redirect_to(:new_user_session)
+
+      post :reject, params: { id: 1 }
+      expect(response).to redirect_to(:new_user_session)
+
       get :index
       expect(response).to redirect_to(:new_user_session)
 
@@ -45,6 +51,12 @@ RSpec.describe OrganizationsController, type: :controller do
       org_user = create(:user)
       org_user.confirm
       sign_in(org_user)
+
+      post :approve, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
+
+      post :reject, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
 
       get :show, params: { id: 1 }
       expect(response).to redirect_to(:dashboard)
