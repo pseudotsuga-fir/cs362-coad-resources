@@ -23,7 +23,7 @@ class TicketsController < ApplicationController
   end
 
   def show
-    return redirect_to dashboard_path unless current_user&.organization&.approved? || current_user.admin?
+    return redirect_to dashboard_path unless current_user&.organization&.approved? || current_user.try(:admin?)
     @ticket = Ticket.find(params[:id])
   end
 
@@ -41,7 +41,7 @@ class TicketsController < ApplicationController
     return redirect_to dashboard_path unless current_user&.organization&.approved?
 
     if TicketService.release_ticket(params[:id], current_user) == :ok
-      if current_user.admin?
+      if current_user.try(:admin?)
         redirect_to dashboard_path << '#tickets:captured'
       else
         redirect_to dashboard_path << '#tickets:organization'
@@ -52,10 +52,10 @@ class TicketsController < ApplicationController
   end
 
   def close
-    return redirect_to dashboard_path unless current_user&.organization&.approved? || current_user.admin?
+    return redirect_to dashboard_path unless current_user&.organization&.approved? || current_user.try(:admin?)
 
     if TicketService.close_ticket(params[:id], current_user) == :ok
-      if current_user.admin?
+      if current_user.try(:admin?)
         redirect_to dashboard_path << '#tickets:open'
       else
         redirect_to dashboard_path << '#tickets:organization'
