@@ -7,17 +7,17 @@ RSpec.describe RegionsController, type: :controller do
 
             get :index
             expect(response).to redirect_to(new_user_session_path)
-            get :show, params: {id: 'fake'} 
+            get :show, params: { id: 'fake' } 
             expect(response).to redirect_to(new_user_session_path)
             get :new
             expect(response).to redirect_to(new_user_session_path)
             post :create
             expect(response).to redirect_to(new_user_session_path)
-            get :edit, params: {id: 'fake'}
+            get :edit, params: { id: 'fake' }
             expect(response).to redirect_to(new_user_session_path)
-            get :update, params: {id: 'fake'}
+            get :update, params: { id: 'fake' }
             expect(response).to redirect_to(new_user_session_path)
-            get :destroy, params: {id: 'fake'}
+            get :destroy, params: { id: 'fake' }
             expect(response).to redirect_to(new_user_session_path)
         end
     end
@@ -30,19 +30,19 @@ RSpec.describe RegionsController, type: :controller do
             sign_in(logged_in_organization_user)
 
             get :index
-            expect(response).to redirect_to(dashboard_url)
+            expect(response).to redirect_to(dashboard_path)
             get :show, params: {id: 'fake'}
-            expect(response).to redirect_to(dashboard_url)
+            expect(response).to redirect_to(dashboard_path)
             get :new
-            expect(response).to redirect_to(dashboard_url)
+            expect(response).to redirect_to(dashboard_path)
             post :create
-            expect(response).to redirect_to(dashboard_url)
+            expect(response).to redirect_to(dashboard_path)
             get :edit, params: {id: 'fake'}
-            expect(response).to redirect_to(dashboard_url)
+            expect(response).to redirect_to(dashboard_path)
             get :update, params: {id: 'fake'}
-            expect(response).to redirect_to(dashboard_url)
+            expect(response).to redirect_to(dashboard_path)
             get :destroy, params: {id: 'fake'}
-            expect(response).to redirect_to(dashboard_url)
+            expect(response).to redirect_to(dashboard_path)
         end
     end
 end
