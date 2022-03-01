@@ -5,4 +5,9 @@ FactoryBot.define do
     sequence(:email) { |n| "fake#{n}@fake.com" }
     password { "I am a password" }
   end
+
+  trait :organization_user do
+    organization
+    role { 'organization' }
+  end
 end
