@@ -29,4 +29,44 @@ describe "individuals" do
   end
 end
 
+describe "organizations" do
+  describe "rejected" do
+    it "redirects to dashboard" do
+      org_user = create(:user)
+      org_user.confirm
+      org_user.organization.reject
+      org_user.organization.save!
+      sign_in(org_user)
+
+      get :show, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
+
+      post :capture, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
+
+      post :release, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
+
+      patch :close, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
+
+      delete :destroy, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
+    end
+  end
+
+  describe "approved" do
+    it "redirects to dashboard" do
+      org_user = create(:user)
+      org_user.confirm
+      org_user.organization.approve
+      org_user.organization.save!
+      sign_in(org_user)
+
+      delete :destroy, params: { id: 1 }
+      expect(response).to redirect_to(:dashboard)
+    end
+  end
+end
+
 end
