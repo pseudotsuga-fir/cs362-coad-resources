@@ -17,16 +17,16 @@ RSpec.describe OrganizationsController, type: :controller do
 
   describe "individuals" do
     it "redirects to the sign in page" do
-      post :approve, params: { id: 1 }
+      post :approve, params: { id: 'fake' }
       expect(response).to redirect_to(:new_user_session)
 
-      post :reject, params: { id: 1 }
+      post :reject, params: { id: 'fake' }
       expect(response).to redirect_to(:new_user_session)
 
       get :index
       expect(response).to redirect_to(:new_user_session)
 
-      get :show, params: { id: 1 }
+      get :show, params: { id: 'fake' }
       expect(response).to redirect_to(:new_user_session)
 
       post :create
@@ -35,13 +35,13 @@ RSpec.describe OrganizationsController, type: :controller do
       get :new
       expect(response).to redirect_to(:new_user_session)
 
-      get :edit, params: { id: 1 }
+      get :edit, params: { id: 'fake' }
       expect(response).to redirect_to(:new_user_session)
 
-      patch :update, params: { id: 1 }
+      patch :update, params: { id: 'fake' }
       expect(response).to redirect_to(:new_user_session)
 
-      put :update, params: { id: 1 }
+      put :update, params: { id: 'fake' }
       expect(response).to redirect_to(:new_user_session)
     end
   end
@@ -52,22 +52,22 @@ RSpec.describe OrganizationsController, type: :controller do
       org_user.confirm
       sign_in(org_user)
 
-      post :approve, params: { id: 1 }
+      post :approve, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      post :reject, params: { id: 1 }
+      post :reject, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      get :show, params: { id: 1 }
+      get :show, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      get :edit, params: { id: 1 }
+      get :edit, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      patch :update, params: { id: 1 }
+      patch :update, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      put :update, params: { id: 1 }
+      put :update, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
     end
   end
