@@ -12,19 +12,19 @@ RSpec.describe TicketsController, type: :controller do
 
 describe "individuals" do
   it "redirects to dashboard" do
-    get :show, params: { id: 1 }
+    get :show, params: { id: 'fake' }
     expect(response).to redirect_to(:dashboard)
 
-    post :capture, params: { id: 1 }
+    post :capture, params: { id: 'fake' }
     expect(response).to redirect_to(:dashboard)
 
-    post :release, params: { id: 1 }
+    post :release, params: { id: 'fake' }
     expect(response).to redirect_to(:dashboard)
 
-    patch :close, params: { id: 1 }
+    patch :close, params: { id: 'fake' }
     expect(response).to redirect_to(:dashboard)
 
-    delete :destroy, params: { id: 1 }
+    delete :destroy, params: { id: 'fake' }
     expect(response).to redirect_to(:dashboard)
   end
 end
@@ -38,19 +38,19 @@ describe "organizations" do
       org_user.organization.save!
       sign_in(org_user)
 
-      get :show, params: { id: 1 }
+      get :show, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      post :capture, params: { id: 1 }
+      post :capture, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      post :release, params: { id: 1 }
+      post :release, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      patch :close, params: { id: 1 }
+      patch :close, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
 
-      delete :destroy, params: { id: 1 }
+      delete :destroy, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
     end
   end
@@ -63,7 +63,7 @@ describe "organizations" do
       org_user.organization.save!
       sign_in(org_user)
 
-      delete :destroy, params: { id: 1 }
+      delete :destroy, params: { id: 'fake' }
       expect(response).to redirect_to(:dashboard)
     end
   end
