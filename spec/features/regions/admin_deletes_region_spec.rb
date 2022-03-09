@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting a Region', type: :feature do
-  it "######################################" do
+  it "tells the admin the region was deleted" do
     admin = create(:user, :admin)
     admin.confirm
     log_in_as(admin)
