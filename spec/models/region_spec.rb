@@ -54,4 +54,10 @@ RSpec.describe Region, type: :model do
     end
   end
 
+  describe "#unspecified" do
+    it "finds or creates a region named Unspecified" do
+      expect(Region.unspecified.name).to eq('Unspecified') 
+    end
+  end
+
 end
