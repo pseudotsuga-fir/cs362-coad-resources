@@ -6,7 +6,6 @@ RSpec.describe Region, type: :model do
 
   describe "attributes" do 
     it "has a name" do 
-      region = Region.new
       expect(region).to respond_to(:name)
     end
   end
@@ -51,6 +50,12 @@ RSpec.describe Region, type: :model do
       name = 'Mt. Hood'
       region = Region.new(name: name)
       expect(region.to_s).to eq(name)
+    end
+  end
+
+  describe "#unspecified" do
+    it "finds or creates a region named Unspecified" do
+      expect(Region.unspecified.name).to eq('Unspecified') 
     end
   end
 

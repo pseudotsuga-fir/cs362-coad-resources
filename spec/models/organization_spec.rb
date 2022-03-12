@@ -121,29 +121,36 @@ RSpec.describe Organization, type: :model do
   end
 
   describe "methods" do
-    it "approves approved organizations" do
-      organization.status = "submitted"
-      organization.approve
-      expect(organization.status).to eq('approved')
+    describe "#approve" do
+      it "approves approved organizations" do
+        organization.status = "submitted"
+        organization.approve
+        expect(organization.status).to eq('approved')
+      end
     end
 
-    it "rejects rejected organizations" do
-      organization.status = "submitted"
-      organization.reject
-      expect(organization.status).to eq('rejected')
+    describe "#reject" do
+      it "rejects rejected organizations" do
+        organization.status = "submitted"
+        organization.reject
+        expect(organization.status).to eq('rejected')
+      end
     end
 
-    it "sets default status to status" do
-      organization = Organization.new()
-      organization.set_default_status
-      expect(organization.status).to eq('submitted')
+    describe "#set_default_status" do
+      it "sets default status to status" do
+        organization = Organization.new()
+        organization.set_default_status
+        expect(organization.status).to eq('submitted')
+      end
     end
 
-    it "returns own name" do
-      name = organization.name
-      expect(organization.to_s).to eq(name)
+    describe "#to_s" do
+      it "returns own name" do
+        name = organization.name
+        expect(organization.to_s).to eq(name)
+      end
     end
-    
   end
 
 end
