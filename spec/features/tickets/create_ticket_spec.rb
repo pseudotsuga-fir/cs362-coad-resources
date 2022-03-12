@@ -10,7 +10,7 @@ RSpec.describe 'Creating a Ticket', type: :feature do
         fill_in "Full Name", with: "Fake Name"
         fill_in "Phone Number", with: "5415415415"
         select "FakeName1", from: "Region"
-        select "FakeName1", from: "Resource Category"
+        select "FakeName", from: "Resource Category"
         fill_in "Description", with: "Fake Description"
         click_button("Send this help request")
         expect(page).to have_content "Ticket Submitted"
