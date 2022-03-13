@@ -1,3 +1,5 @@
+# A Ticket is created by a logged in or non logged in user to submit a help request
+
 class Ticket < ApplicationRecord
 
   belongs_to :region
