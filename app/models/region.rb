@@ -1,4 +1,4 @@
-# A region is chosen when a ticket is created.
+# A region is chosen when a ticket is created. 
 class Region < ApplicationRecord
 
   has_many :tickets

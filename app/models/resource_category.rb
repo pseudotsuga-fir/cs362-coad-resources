@@ -1,3 +1,5 @@
+# The ResourceCategory class is used for activation, deactivation, and inactivity detection
+
 class ResourceCategory < ApplicationRecord
 
   has_and_belongs_to_many :organizations
