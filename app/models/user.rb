@@ -1,3 +1,5 @@
+# A User is anyone who has registered their information (name, email, etc.) through the website
+
 class User < ApplicationRecord
 
   enum role: [:admin, :organization]
